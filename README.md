@@ -1,4 +1,4 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# NextJs 🔥 Full Stack Medium Clone Application
 
 ## Getting Started
 
@@ -19,6 +19,15 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+
+---
+
+## ⭐DO NOT FORGET TO STAR THIS REPO⭐
+
+---
+
+If you want to learn how to create it please follow below tutorial👇:
+➡ Tutorial Link 💚 Code with "PERFECT CODE" Youtube Channel: [NextJs 🔥 Full Stack Medium Clone Application | NextJs & Server Actions](https://www.youtube.com/watch?v=uMUTAqtkWYg)
 
 ## Learn More
 
