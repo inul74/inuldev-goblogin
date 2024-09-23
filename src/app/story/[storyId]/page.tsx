@@ -1,17 +1,27 @@
 import React from "react";
 
 import NewStory from "../New-Story";
-import Navbar from "@/components/Navbar";
+import NavbarStory from "../NavbarStory";
+import { getCurrentuser } from "@/actions/User";
+import { getStoryById } from "@/actions/getStories";
 
 type Props = {};
 
 const page = async ({ params }: { params: { storyId: string } }) => {
-  console.log(params.storyId);
-
+  const Story = await getStoryById(params.storyId);
+  const User = await getCurrentuser();
   return (
-    <div className="max-w-[1000px] mx-auto" role="textbox" data-length>
-      <Navbar />
-      <NewStory />
+    <div className="max-w-[1000px] mx-auto " role="textbox" data-length>
+      <NavbarStory
+        storyId={params.storyId}
+        CurrentUserId={User.id}
+        CurrentUserFirstName={User?.firstName || ""}
+        CurrentUserLastName={User?.lastName || ""}
+      />
+      <NewStory
+        storyId={params.storyId}
+        Storycontent={Story.response?.content}
+      />
     </div>
   );
 };

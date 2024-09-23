@@ -1,18 +1,18 @@
 "use client";
 
-import React from "react";
 import axios from "axios";
 import Link from "next/link";
 import Image from "next/image";
-import { Search } from "lucide-react";
+import React, { useState } from "react";
 import { UserButton } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
+import { ScrollText, Search } from "lucide-react";
 
 type Props = {};
 
 const Navbar = (props: Props) => {
+  const [SearchInput, setSearchInput] = useState<string>("");
   const router = useRouter();
-
   const MakeNewStory = async () => {
     try {
       const response = await axios.post("/api/new-story");
@@ -23,6 +23,11 @@ const Navbar = (props: Props) => {
     }
   };
 
+  const SearchFun = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      router.push(`/search?for=${SearchInput}`);
+    }
+  };
   return (
     <div className="px-8 py-2 border-b-[1px]">
       <div className="flex items-center justify-between">
@@ -33,12 +38,17 @@ const Navbar = (props: Props) => {
               width={100}
               height={100}
               alt="goBlogin"
-              priority
             />
           </Link>
           <div className="flex items-center bg-gray-50 rounded-full px-2">
-            <Search size={20} className="opacity-50" />
+            <Search
+              onClick={() => router.push(`/search?for${SearchInput}`)}
+              size={20}
+              className="opacity-50"
+            />
             <input
+              onChange={(e) => setSearchInput(e.target.value)}
+              onKeyDown={(e) => SearchFun(e)}
               type="text"
               placeholder="Search..."
               className="focus:outline-none px-1 py-2 placeholder:text-sm text-sm bg-gray-50"
@@ -66,8 +76,14 @@ const Navbar = (props: Props) => {
                 stroke="currentColor"
               ></path>
             </svg>
-            <p className="font-normal text-sm">Write</p>
+            <p className="font-light text-sm">Write</p>
           </span>
+          <Link
+            href="/me/drafts"
+            className="opacity-60 flex items-center space-x-1 text-sm font-light"
+          >
+            <ScrollText size={20} opacity={20} /> Me
+          </Link>
           <UserButton signInUrl="/" />
         </div>
       </div>
